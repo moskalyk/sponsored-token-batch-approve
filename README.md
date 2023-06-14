@@ -7,7 +7,6 @@ follow [these steps](https://docs.sequence.xyz/relayer/building-relaying-server#
 ```js
 import { sequence } from "0xsequence";
 
-
 const batchApproveContractAddress = '0x...'
 
 const batchApproveContractAddressInterface = new ethers.utils.Interface([
