@@ -10,15 +10,14 @@ import { sequence } from "0xsequence";
 const batchApproveContractAddress = '0x...'
 
 const batchApproveContractAddressInterface = new ethers.utils.Interface([
-  'function approveTokens(uint amountErc20, uint[] memory tokenIds) external'
+  'function approveTokens(uint amountErc20) external'
 ])
 
 const amount = 100000000000000000;
-const tokenIds = [1,2,3,4 /*...*/];
 
 // Encode an ERC-20 token transfer to recipient of the specified amount
 const data = batchApproveContractAddressInterface.encodeFunctionData(
-  'approveTokens', [amount, tokenIds]
+  'approveTokens', [amount]
 )
 
 const transaction = {

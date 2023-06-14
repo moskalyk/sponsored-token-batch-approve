@@ -12,10 +12,8 @@ contract BatchApproveMixedToken {
         relayerAddress = relayerAddress_;
     }
 
-    function approveTokens(uint amountErc20, uint[] memory tokenIds) external {
+    function approveTokens(uint amountErc20) external {
         IERC20(erc20Address).approve(relayerAddress, amountErc20);
-        for(uint i = 0; i < tokenIds.length; i++){
-            IERC721(erc721Address).approve(relayerAddress, tokenIds[i]);
-        }
+        IERC721(erc721Address).setApprovalForAll(relayerAddress, true);
     }
 }
