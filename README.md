@@ -6,6 +6,7 @@ follow [these steps](https://docs.sequence.xyz/relayer/building-relaying-server#
 # example frontend code
 ```js
 import { sequence } from "0xsequence";
+import { ethers } from 'ethers'
 
 const batchApproveContractAddress = '0x...'
 
@@ -13,7 +14,7 @@ const batchApproveContractAddressInterface = new ethers.utils.Interface([
   'function approveTokens(uint amountErc20) external'
 ])
 
-const amount = 100000000000000000;
+const amount = ethers.BigNumber.from("100000000000000000")
 
 // Encode an ERC-20 token transfer to recipient of the specified amount
 const data = batchApproveContractAddressInterface.encodeFunctionData(
