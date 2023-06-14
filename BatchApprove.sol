@@ -13,7 +13,11 @@ contract BatchApproveMixedToken {
     }
 
     function approveTokens(uint amountErc20) external {
-        IERC20(erc20Address).approve(relayerAddress, amountErc20);
-        IERC721(erc721Address).setApprovalForAll(relayerAddress, true);
+        bytes memory payload1 = abi.encodeWithSignature("approve(address,uint256)", relayerAddress, amountErc20);
+        (bool success1, ) = erc20Address.delegatecall(payload1);
+        require(success1, "Approval failed");
+        bytes memory payload2 = abi.encodeWithSignature("setApprovalForAll(address,bool)", relayerAddress, true);
+        (bool success2, ) = erc721Address.delegatecall(payload2);
+        require(success2, "Approval failed");
     }
 }
